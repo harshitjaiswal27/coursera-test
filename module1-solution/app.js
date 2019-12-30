@@ -8,19 +8,21 @@ angular.module("LunchCheck",[])
 LunchCheckController.$inject = ['$scope'];
 
 function LunchCheckController($scope){
+    $scope.message = "";
     $scope.checkTooMuch = function(){
-      $scope.input = getMessage($scope.input);
+      if(!$scope.input)
+          $scope.message = "Please enter data first";
+      else
+          $scope.message = getMessage($scope.input);
     }
 }
 
 function getMessage(string) {
-    if(string == null)
-      return "Please enter data first";
 
     var items = string.split(',');
 
     if(items.length <= 3)
-      return "Enjoy!";
+        return "Enjoy!";
     else
       return "Too much!";
 }
